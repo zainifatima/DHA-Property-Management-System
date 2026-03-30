@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+
+<div class= "heading_property">
+    <h1 class=heading_property>Property Dealer </h1>
+</div>
+
+<div class="container_form">
+    <form method="POST" action="{% url 'Property' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Property Dealer Form</h2>
+        <label for="name">Name: </label>
+        <input type="text" name="name" required placeholder="Name">
+        <br>
+        <label for="agency">Agency: </label>
+        <input type="text" name="agency" required placeholder="Agency Name">
+        <br>
+       <label for="phone" class="form-label">Phone Number:</label>
+       <input type="text" class="form-control" id="phone" name="phone" pattern="[0-9]{4}-[0-9]{7}" placeholder="0333-1234567">
+       
+       <label for="uploadfile" class="up_file">Upload File: </label>
+       <input type="file" name="uploadfile" id="upload_file" accept=".doc, .docx, .pdf, .txt" required><br><br>
+       
+       <label for="upload_image" class="upload_img">Upload Image: </label>
+       <input type="file" name="upload_image" id="upload_image"accept="image/*" required><br><br>
+       
+       <label for="address">Address:</label><br>
+        <textarea name="address" id="address" cols="30" rows="4" required
+            placeholder="Type your address here.."></textarea><br><br>
+        {% comment %} <input type="checkbox" name="newsletter" id="newsletter" required>
+        <label for="newsletter">Agree and Accept</label><br><br> {% endcomment %}
+
+        <button type="submit" id="btn-save" value="">Save</button>
+        {% comment %} <input type="submit" value="View" >  {% endcomment %}
+        {% comment %} <li><a  class="view_btn" href="/View_property">View</a></li> {% endcomment %}
+    </form>
+</div>
+
+{% endblock body %}

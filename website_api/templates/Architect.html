@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class= "heading_property">
+    <h1 class=heading_property>Architect </h1>
+</div>
+
+{% comment %} <div class="container_form">
+    <form method="POST" action="{% url 'Architect' %}">
+        {% csrf_token %}
+        <h2>Architect Form</h2>
+        <label for="name"> Regd No: </label>
+        <input type="text" name="reg-no" required placeholder=" Regd No">
+        <br>
+        <label for="name"> Architect Name: </label>
+        <input type="text" name="name" required placeholder=" Architect Name">
+        <br>
+        <label for="agency">Name of Firms: </label>
+        <input type="text" name="agency" required placeholder="Name of Firms">
+        <br>
+       <label for="phone" class="form-label">Contact Number</label>
+       <input type="text" class="form-control" id="phone" name="phone" pattern="[0-9]{4}-[0-9]{7}" placeholder="0333-1234567">
+        <label for="address">Address:</label><br>
+        <textarea name="address" id="address" cols="30" rows="4" required
+            placeholder="Type your address here.."></textarea><br><br>
+        {% comment %} <input type="checkbox" name="newsletter" id="newsletter" required>
+        <label for="newsletter">Agree and Accept</label><br><br> {% endcomment %}
+
+        {% comment %} <button type="submit" id="btn-save" value="">Save</button>
+        {% comment %} <input type="submit" value="View" >  {% endcomment %}
+        {% comment %} <li><a  class="view_btn" href="/View_property">View</a></li>
+    </form> 
+</div> {% endcomment %}
+
+<div class="container_view">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <h1 > All Architect</h1>
+        <table class="table" >
+          <tbody>
+            <thead style="background-color: #ddd;">
+            <tr>
+              <th>Regno</th>
+              <th>Name</th>
+              <th>Firm</th>
+              <th>Phone</th>
+              <th>File</th>
+              <th>Image</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          {% for data in form %}
+          
+            <tr>
+              <td>{{data.reg_no}}</td>
+              <td>{{data.name}}</td>
+              <td>{{data.firm}}</td>
+              <td>{{data.phone}}</td>
+              <td><a href="{{ data.uploadfile.url}}" target="_blank">{{ data.uploadfile}} </a> </td>
+              <td> <a href="{{ data.upload_img.url}}"  target="_blank" > 
+               <img src={{ data.upload_img.url}} width="50px" height="50px"></a></td>
+              <td>{{data.addre}}</td>
+              {% comment %} update button {% endcomment %}
+              <td>
+                <a  href="{% url 'Updateform' data.reg_no %}" class="U1_btn" style: "color:green;" ><i class="fa-solid fa-pen-to-square"></i></a>
+                <form method="POST">
+                  {% csrf_token %}
+                    <a href="{% url 'delete' data.reg_no %} " class="D_btn"><i class="fa-solid fa-trash-can"></i></a>
+              </form>
+              </td>
+              {% comment %} <td><i class="fa-solid fa-trash-can"></i></td> {% endcomment %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock body %}

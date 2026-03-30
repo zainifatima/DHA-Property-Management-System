@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
+
+
+{% block body %}
+
+
+<div class="container" > </div>
+
+    <div class="list_btn"> 
+    <ul>
+        <div class=" bar" align="center">
+            <li><a href="/Property" >Property Dealer</a></li>
+            <li><a href="/Architect">Architect</a></li>
+            <li><a href="/Soil_Firms">Soil Test Firm</a></li>
+            <li><a href="/Solar_Firms">Solar Firm</a></li>
+            <li><a href="/Vetting_Engineers">Veeting Engineer</a></li>
+        </div>
+   </ul>
+</div>
+   
+     {% comment %} <button  type="button" class="prop_button" onclick="location.href='/Property'"><b >Property Dealer</b> </button>
+
+     </div> {% endcomment %}
+    {% comment %} <button  type="button"onclick="location.href='/Architect'" class="Architect_btn">Architect
+    <button  type="button"onclick="location.href='/Soil_Firms'" class="soil_btn">Soil_Firms
+    <button  type="button"onclick="location.href='/Solar_Firms'" class="solar_btn">Solar_Firms
+    <button  type="button"onclick="location.href='/Vetting_Engineers'" class="vetting_btn">Vetting_Engineers {% endcomment %}
+</div>
+
+
+{% endblock body %}
+
+{% comment %} {% block body %}
+<link rel="stylesheet" href="Property.html">
+
+<div class="container">
+    <button type=" button">this is my button</button>
+    <p>Lorem ipsum dolor sit amet consectetur.</p>
+
+</div>
+{% comment %} <button onclick="location.href={% 'Property.html' %}">Button 1</button>
+<button onclick="location.href='{% url 'Architect.html' %}'">Button 2</button>
+<button onclick="location.href='{% url 'destination' %}'">Button 3</button>
+<button onclick="location.href='{% url 'destination' %}'">Button 4</button>
+<button onclick="location.href='{% url 'destination' %}'">Button 5</button>
+<button onclick="location.href='{% url 'destination' %}'">Button 6</button> {% endcomment %}
+{% comment %} 
+{% endblock body %} {% endcomment %}

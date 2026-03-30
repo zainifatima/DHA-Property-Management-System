@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class= "heading_property">
+    <h1 class=heading_property>Solar Firms </h1>
+</div>
+
+<div class="container_view">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <h1 > All Solar Firm</h1>
+        <table class="table" >
+          <tbody>
+            <thead style="background-color: #ddd;">
+            <tr>
+              <th>Regno</th>
+              <th>Name</th>
+              <th>Firm</th>
+              <th>Phone</th>
+              <th>File</th>
+              <th>Image</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          {% for data in form %}
+          
+            <tr>
+              <td>{{data.reg_no}}</td>
+              <td>{{data.name}}</td>
+              <td>{{data.firm}}</td>
+              <td>{{data.phone}}</td>
+              <td><a href="{{ data.uploadfile.url}}" target="_blank">{{ data.uploadfile}} </a> </td>
+              <td> <a href="{{ data.upload_img.url}}"  target="_blank" > 
+              <img src={{ data.upload_img.url}} width="50px" height="50px"></a></td>
+              <td>{{data.addre}}</td>
+               <td>
+                <a  href="{% url 'Updateform' data.reg_no %}" class="U1_btn" style: "color:green;" ><i class="fa-solid fa-pen-to-square"></i></a>
+                <form method="POST">
+                  {% csrf_token %}
+                    <a href="{% url 'delete' data.reg_no %} " class="D_btn"><i class="fa-solid fa-trash-can"></i></a>
+              </form>
+              </td>
+            </tr>{% endfor %}
+          
+          </tbody>
+        </table>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock body %}

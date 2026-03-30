@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class= "heading_property">
+    <h1 class=heading_property>Update Form </h1>
+</div>
+
+<div class="container_form">
+    <form method="POST" action=""  enctype="multipart/form-data" > 
+        {% csrf_token %}
+        <h2>Update Form</h2>
+        <label for="reg_no"> Regd No: </label>
+        <input type="text" name="reg_no" value="{{ data.reg_no}}"required placeholder=" Regd No">
+        <br>
+        <label for="name"> Name: </label>
+        <input type="text" name="name" value="{{ data.name }}" required placeholder="Name">
+        <br>
+        <label for="firm">Name of Firms: </label>
+        <input type="text" name="firm" value="{{ data.firm }}"required placeholder="Name of Firms">
+        <br>
+       <label for="phone" class="form-label">Contact Number</label>
+       <input type="text" class="form-control" value="{{ data.phone }}"id="phone" name="phone" pattern="[0-9]{4}-[0-9]{7}" placeholder="0333-1234567">
+
+        <label for="desig_choice">Designation:</label>
+        <select name="desig_choice" id="designation" required disabled>
+        
+            <option  value="">Option</option>
+            <option selected="selected" value="{{ data.desic }}">{{ data.desic }}</option>
+
+        </select><br>
+          
+        <label for="up_file" class="up_file">Upload File: </label>
+        <input type="file" name="up_file" id="upload_file"  value="{{ data.uploadfile}}" accept=".doc, .docx, .pdf, .txt" required><br><br>
+        
+        <label for="up_image" class="upload_img">Upload Image: </label>
+        <input type="file" name="up_image" id="upload_image"  value="{{ data.upload_img}}" accept="image/*" required><br><br>
+
+         <label for="address">Address:</label><br>
+        <textarea name="address" id="address" cols="30" rows="4" required
+            placeholder="Type your address here..">{{ data.addre }}</textarea><br><br>
+
+        {% comment %} <input type="checkbox" name="newsletter" id="newsletter" required>
+        <label for="newsletter">Agree and Accept</label><br><br> {% endcomment %}
+
+        <button type="submit" id="button-update" style=" background-color: #3f84c5;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: 3px solid rgb(73, 80, 80);
+        align-content: center;
+        margin-left: 200px;
+        display: flexbox;
+        justify-content: center;
+        align-items: center;">Update</button>
+        {% comment %} <input type="submit" value="View" >  {% endcomment %}
+    </form>
+</div>
+
+{% endblock body %}

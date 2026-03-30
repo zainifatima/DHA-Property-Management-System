@@ -1,0 +1,52 @@
+{% extends "base.html" %} 
+
+
+{% block body %}
+
+<div class="container_view">
+  <div class="row">
+    <div class="col-md-12">
+      
+      <h1 > All Property Dealer</h1>
+      <table class="table" >
+        <tbody>
+          <thead style="background-color: #ddd;">
+          <tr>
+            <th>Name</th>
+            <th>Agency</th>
+            <th>Phone</th>
+            <th>File</th>
+            <th>Image</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+        {% for data in form %}
+        
+          <tr>
+            <td>{{data.name}}</td>
+            <td>{{data.agency}}</td>
+            <td>{{data.phone}}</td>
+            <td><a href="{{ data.uploadfile.url}}" target="_blank">{{ data.uploadfile}} </a> </td>
+            <td> <a href= "{{ data.upload_img.url}}"  target="_blank" >
+              <img src={{ data.upload_img.url}} width="50px" height="50px"></a></td>
+            <td>{{data.addre}}</td>
+            <td>           
+              <a  href="{% url 'Update_property' data.agency %}" class="U1_btn" style: "color:green;" ><i class="fa-solid fa-pen-to-square"></i></a>
+              <form method="POST">
+                {% csrf_token %}
+                  <a href="{% url 'Delete_property'  data.agency  %} " class="D_btn"><i class="fa-solid fa-trash-can"></i></a>
+            </form>
+            </td>
+          </tr>{% endfor %}
+        
+        </tbody>
+      </table>
+      
+      
+      
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+ {% block body %}
+
+
+   <div class="container_register" >
+    {% comment %} <img src="static/images/pattern4.jpg" style="width:100%; inline: height 50px;" alt=""> {% endcomment %}
+        <div class="registration-options">
+            <a href="{% url 'Property' %}" >Register as Property Dealer</a>
+            <a href="{% url 'Category_registration'%}">Register in other Categories</a>
+        </div>
+    </div> 
+ 
+    {% comment %} <div class="footer">
+        <p>Resize the browser window to see how the content respond to the resizing.</p>
+      </div> {% endcomment %}
+    
+
+
+{% endblock body %} 
+

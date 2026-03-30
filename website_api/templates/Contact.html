@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+  <!-- bootstrap -->
+  {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> {% endcomment %}
+
+{% block body %}
+
+ {% comment %} <div class="container-fluid px-0 mb-2">
+    <img src="{% static "images/cc.jpg" %}" class="d-block" alt="Error:image not load" />
+  </div>  {% endcomment %}
+
+<div class="container-contact col-md-6  mb-4">
+    <h2 class="heading1 py-3" style="text-align: center;">Contact Us</h2>
+
+    <form id="myForm" action=" " method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+     {% csrf_token %}
+      <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="" id="name" name="name" placeholder="Enter your name">
+          <small id="nameError" class="text-danger"></small>
+      </div>
+      <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+          <small id="emailError" class="text-danger"></small>
+      </div>
+      <div class="mb-3">
+          <label for="cnic" class="form-label">CNIC</label>
+          <input type="text" class="form-control" id="cnic" name="cnic" placeholder="Enter your CNIC">
+          <small id="cnicError" class="text-danger"></small>
+      </div>
+
+      <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="tel" class="form-control" id="phone" name="phone "placeholder="Enter your phone number">
+          <small id="phoneError" class="text-danger"></small>
+      </div>
+
+      <div class="mb-3">
+          <label for="comment" class="form-label">Comments</label>
+          <textarea class="form-control" id="comment" rows="4" name="comment" placeholder="Add your comments"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary mb-3">Submit</button>
+  </form>
+
+      
+  </div>
+
+
+  {% comment %} Javascript validation {% endcomment %}
+
+  
+  {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script> {% endcomment %}
+  
+
+{% endblock body %}
+{% block scripts%}
+<script>  
+
+    $(document).ready(function() {
+      console.log('in document')
+     $('#phone').inputmask("mask", {"mask": "03##-#######"});
+     $('#cnic').inputmask("mask", {"mask": "99999-9999999-9"});
+    });
+
+  function validateForm() {
+    console.log('submit button pressed')
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var cnic = document.getElementById("cnic").value;
+      var phone = document.getElementById("phone").value;
+      
+      var nameError = document.getElementById("nameError");
+      var emailError = document.getElementById("emailError");
+      var cnicError = document.getElementById("cnicError");
+      var phoneError = document.getElementById("phoneError");
+
+      var namePattern = /^[A-Za-z\s]+$/;
+      var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      var cnicPattern = /^[0-9]{5}-[0-9]{7}-[0-9]{1}$/;
+      var phonePattern = /^03[0-9]{2}-[0-9]{7}$/;
+
+      var isValid = true;
+
+      if (!name.match(namePattern)) {
+          nameError.textContent = "Please enter a valid name";
+          isValid = false;
+      } else {
+          nameError.textContent = "";
+      }
+
+      if (!email.match(emailPattern)) {
+          emailError.textContent = "Please enter a valid email";
+          isValid = false;
+      } else {
+          emailError.textContent = "";
+      }
+
+      if (!cnic.match(cnicPattern)) {
+          cnicError.textContent = "Please enter a valid CNIC (e.g., 12345-1234567-1)";
+          isValid = false;
+      } else {
+          cnicError.textContent = "";
+      }
+
+      if (!phone.match(phonePattern)) {
+          phoneError.textContent = "Please enter a valid phone number (e.g., 03xx-xxxxxxx)";
+          isValid = false;
+      } else {
+          phoneError.textContent = "";
+      }
+
+      return isValid;
+  }
+</script>
+{% endblock %}

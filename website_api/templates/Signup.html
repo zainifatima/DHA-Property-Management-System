@@ -1,0 +1,35 @@
+{%extends "base.html" %}
+
+{% block body %}
+
+
+  <div class="container_signup">
+    <div class=" col-md-8">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <h2>Signup Form</h2>
+        <label for="email">Email: </label>
+        <input type="Email" name="email" required placeholder="example@gmail.com">
+        <br>
+        <label for="username">Username: </label>
+        <input type="text" name="username" required placeholder="username">
+        <br>
+        <label for="psw1">Password: </label>
+        <input type="password" id="psw" name="psw1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+        <br>
+        <label for="con_psw">Confirm Password: </label>
+        <input type="password" id="con_psw" name="con_psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+        <br><span class="psw">Alreday have an account <a href="{% url 'Login'%}">Login</a></span>
+        <br>
+        <button type="submit" id="btn-login" value="">SignUp</button>
+      </div>
+    </form>
+</div>
+
+</div>
+{% endblock body %}
+
+
+
